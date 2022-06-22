@@ -1,5 +1,6 @@
-*{
+*,::after,::before{
    list-style:none;
+   box-sizing:unset !important;
 }
 .link{
     text-decoration: none;color:#fff;
@@ -7,17 +8,18 @@
 #app{
     width:auto;overflow:hidden;margin:0px;padding:0px;
 }
+
 .clearfix{
     clear:both;
 }
-.container{
+.container-app{
     width:100%;height:auto;box-sizing: border-box;margin:0px;padding:0px;overflow: hidden;background-color: #fff;background:url('/img/images/main-back-ground.jpg');background-repeat: no-repeat;background-size: cover;opacity:1;visibility:visible;margin-top:-15px;
 }
 .container-home{
     width:100%;height:auto;margin:0px;padding:0px;
 }
 .row-home{
-    width:1300px;height:auto;box-sizing: border-box;
+    width:100%;height:auto;margin:0px;padding:0px;
 }
 .row-home .header{
     width:1200px;height:auto;margin-left: auto;margin-right: auto;
@@ -125,7 +127,7 @@ legend span{
 .infor-section .book-appointment{ position:relative;margin-top:30px;;background:orange; color:#fff; width: 400px; margin-left: auto; margin-right: auto; border-radius:15px; -webkit-border-radius:15px; -moz-border-radius:15px; -ms-border-radius:15px; -o-border-radius:15px;font-size:17px; }
 .infor-section .book-appointment span{font-size:10px;}
 .infor-section .book-appointment::after{
-    content: "";position: absolute;background-image: url('/img/images/bg-box.png');color: #fff; height: 10px;width:100%;text-align: center;left: 5px;top: 40px;background-position:bottom;background-repeat: no-repeat;opacity:0.8;
+    content: "";position: absolute;background-image: url('/img/images/bg-box.png');color: #fff; height: 10px;width:100%;text-align: center;left: 5px;top: 51px;background-position:bottom;background-repeat: no-repeat;opacity:0.8;
 }
 /* copyright */
 .copyright{
@@ -144,11 +146,12 @@ legend span{
 .gallery .inner-gallery{
     width: 1200px;height:auto;margin:0px;padding:0px;display: flex;margin-left: auto;margin-right: auto;
 }
-.inner-gallery ul{
-    padding:0px;margin-left: auto;margin-right: auto;
+.inner-gallery ul {
+    padding: 0px; margin-left: auto;margin-right: auto; display: grid;grid-template-columns: 33% 33% 33%; grid-template-rows: auto auto auto;
 }
 .inner-gallery ul li img{
     width:100%;
+    height:100%;
 }
 /* list group */
 .main-bar li .list-group{
@@ -156,5 +159,5 @@ legend span{
 }
 .list-group li{
     display:block !important;line-height:1.5;text-align:center;
-    width:200px;height:30px;background-color:#000;position: relative;margin-top:0px;margin-left: 0px;z-index:2;border-bottom:1px solid #fff;
+    width:200px;height:auto;background-color:#000;position: relative;margin-top:0px;margin-left: 0px;z-index:2;border-bottom:1px solid #fff;
 }

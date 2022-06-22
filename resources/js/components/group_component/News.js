@@ -11,20 +11,29 @@ class News extends Component {
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+       news:[],
       }
     }
     //function react js
-    ExampleFunction(){
-    }
+    onGetValue=() => {
+        axios.get("http://127.0.0.1:8000/api/getNews")
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+             news: response.data.data,
+            });
+          //   console.log(this.state.category);
+          }
+        })
+      }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.onGetValue();
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                        {/* code content */}
@@ -41,24 +50,30 @@ class News extends Component {
                                          <div className="news-list-group">
                                               <div className="news-main">
                                                      <ul className="news-list">
-                                                            <li>
-                                                                <div className="left-img-news">
-                                                                    <img src="/img/images/middle_1a.jpg" />
-                                                                </div>
-                                                                <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
-                                                                     <p>
-                                                                        Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ cười tỏa nắng
-                                                                         thì việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
-                                                                     </p>
-                                                                </div>
-                                                            </li>
-                                                            <li>
+                                                        {
+                                                            this.state.news.length > 0 ?(
+                                                                this.state.news.map((n)=>(
+                                                                    <li key={n.id}>
+                                                                    <div className="left-img-news">
+                                                                        <img src={"/uploads/"+n.image} />
+                                                                    </div>
+                                                                    <div className="right-text-news">
+                                                                         <legend><Link to={"/news_detail/"+n.id} className="text-primary">{n.heading}</Link></legend>
+                                                                         <p>
+                                                                           {n.description}
+                                                                         </p>
+                                                                    </div>
+                                                                </li>
+                                                                ))
+                                                            ):(<span className="btn btn-primary">empty</span>)
+                                                        }
+
+                                                            {/* <li>
                                                                 <div className="left-img-news">
                                                                     <img src="/img/images/Nha-khoa_11a.jpg" />
                                                                 </div>
                                                                 <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
+                                                                     <legend><Link to="" className="text-primary">máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</Link></legend>
                                                                      <p>
                                                                         Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ cười
                                                                          tỏa nắng thì việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
@@ -70,7 +85,7 @@ class News extends Component {
                                                                     <img src="/img/images/middle_1a.jpg" />
                                                                 </div>
                                                                 <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
+                                                                <legend><Link  to="" className="text-primary">máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</Link></legend>
                                                                      <p>
                                                                         Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ cười tỏa nắng
                                                                          thì việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
@@ -82,7 +97,7 @@ class News extends Component {
                                                                     <img src="/img/images/Nha-khoa_11a.jpg" />
                                                                 </div>
                                                                 <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
+                                                                <legend><Link to="" className="text-primary">máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</Link></legend>
                                                                      <p>
                                                                         Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ cười tỏa nắng
                                                                          thì việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
@@ -94,7 +109,7 @@ class News extends Component {
                                                                     <img src="/img/images/middle_1a.jpg" />
                                                                 </div>
                                                                 <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
+                                                                <legend><Link to="" className="text-primary">máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</Link></legend>
                                                                      <p>
                                                                         Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ
                                                                          cười tỏa nắng thì việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
@@ -106,13 +121,13 @@ class News extends Component {
                                                                     <img src="/img/images/Nha-khoa_11a.jpg" />
                                                                 </div>
                                                                 <div className="right-text-news">
-                                                                     <legend>máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</legend>
+                                                                <legend><Link to="" className="text-primary">máy lấy cao răng aruko:thương hiệu nhật bản được tin dùng</Link></legend>
                                                                      <p>
                                                                         Để có được một hàm răng thật trắng sáng, chắc khỏe với nụ cười tỏa nắng thì
                                                                          việc thường xuyên lấy cao răng là việc làm vô cùng cần thiết.
                                                                      </p>
                                                                 </div>
-                                                            </li>
+                                                            </li> */}
                                                      </ul>
                                               </div>
                                          </div>

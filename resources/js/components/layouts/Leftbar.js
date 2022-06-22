@@ -1,29 +1,63 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
-import Header from '../layouts/Header';
-import Footer from '../layouts/Footer';
+import axios from 'axios';
 class Leftbar extends Component {
     constructor(props){
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        category:[],
+        news:[],
       }
     }
+    getCategory = () => {
+        axios.get("http://127.0.0.1:8000/api/getAllCategory")
+          .then((response) => {
+            if (response.status === 200) {
+              this.setState({
+               category: response.data.data,
+              });
+            //   console.log(this.state.category);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      onGetValue=() => {
+        axios.get("http://127.0.0.1:8000/api/getNews2")
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+             news: response.data.data,
+            });
+          //   console.log(this.state.category);
+          }
+        })
+      }
     //function react js
-    ExampleFunction(){
-    }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.getCategory();
+        this.onGetValue();
     }
     render(){
         return (
             <div className="left-list-container">
             <ul className="list-1">
               <legend className="special-heading">dich vụ nha khoa</legend>
-              <li>chỉnh hình
+              {
+                this.state.category.length >0 ?(
+                    this.state.category.map((cate)=>(
+                         <li>
+                            <Link to="/service">{cate.name}</Link>
+                        <hr></hr>
+                         </li>
+                    ))
+                ):(<span className="text-success">empty</span>)
+              }
+              {/* <li>chỉnh hình
                 <hr></hr>
               </li>
               <li>chỉnh nha
@@ -39,17 +73,21 @@ class Leftbar extends Component {
               <hr></hr>
               </li>
               <li>trắng răng
-              </li>
+              </li> */}
             </ul>
             <legend className="list2 legend">bài viết xem nhiều</legend>
             <ul className="list-2">
-               <li>
-                  <div className="left-img"><img src="/img/images/Nha-khoa_26.jpg"/></div>
-                  <div className="right-text">
-                      <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
-                  </div>
-               </li>
-               <li>
+            {
+                    this.state.news.length >0 ?(
+                        this.state.news.map((n)=>(
+                            <li><div className="left-img"><img src={"/uploads/"+n.image} /></div>
+                            <div className="right-text">
+                                <p><Link to={"/news_detail/"+n.id}>{n.heading}</Link></p>
+                            </div></li>
+                        ))
+                    ):(<span className="btn btn-primary">empty</span>)
+                }
+               {/* <li>
                <div className="left-img"><img src="/img/images/Nha-khoa_22b.jpg"/></div>
                   <div className="right-text">
                       <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
@@ -64,15 +102,22 @@ class Leftbar extends Component {
                <li><div className="left-img"><img src="/img/images/Nha-khoa_10a.jpg"/></div>
                   <div className="right-text">
                       <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
-                  </div></li>
+                  </div></li>*/}
             </ul>
             <legend className="list3 legend">tin mới nhất</legend>
             <ul className="list-3">
-               <li><div className="left-img"><img src="/img/images/Nha-khoa_26.jpg"/></div>
-                  <div className="right-text">
-                      <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
-                  </div></li>
-               <li><div className="left-img"><img src="/img/images/Nha-khoa_22b.jpg"/></div>
+                {
+                    this.state.news.length >0 ?(
+                        this.state.news.map((n)=>(
+                            <li><div className="left-img"><img src={"/uploads/"+n.image} /></div>
+                            <div className="right-text">
+                                <p><Link to={"/news_detail/"+n.id}>{n.heading}</Link></p>
+                            </div></li>
+                        ))
+                    ):(<span className="btn btn-primary">empty</span>)
+                }
+
+               {/* <li><div className="left-img"><img src="/img/images/Nha-khoa_22b.jpg"/></div>
                   <div className="right-text">
                       <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
                   </div></li>
@@ -83,7 +128,7 @@ class Leftbar extends Component {
                <li><div className="left-img"><img src="/img/images/Nha-khoa_10a.jpg"/></div>
                   <div className="right-text">
                       <p>Quy trình bọc răng sứ đưuọc thực hiện như thế nào?</p>
-                  </div></li>
+                  </div></li> */}
             </ul>
          </div>
       );

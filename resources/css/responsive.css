@@ -1,0 +1,197 @@
+/* responsive for mobile screen and small devices */
+@media only screen and (max-width:650px){
+  #app{
+    width:auto;
+  }
+  .row-home{width:100%;}
+   .row-home .header{width:100%;}
+  .container-app{width:100%;height:auto;}
+  .main-image-section .left-image-section{width:30%;height:200px;}
+  .main-image-section .center-image-section{width:40%;height:200px;}
+  .main-image-section .right-image-section{width:30%;height:200px;}
+  .main-image-section .left-image-section img{width:100%;height:200px;}
+  .main-image-section .right-image-section img{width:100%;height:200px;}
+  .logo-img .under-logo .social-link{width:100%;margin-left:auto;margin-right:auto;padding:0px;display: -webkit-inline-box;height:auto;}
+  .social-link .li-text{font-size: 15px;}
+  .fa-facebook{ display:none; }
+.fa-google-plus-circle{ display:none;}
+.fa-twitter{ display:none; }
+.fa-youtube-square{ display:none;}
+.fa-phone{ float:left;padding:5px 25px;}
+ .main-bar li{ display:block;text-align:justify;}
+ .main-bar li .list-group{width:100%;}
+ li .list-group li{width:100%;}
+ #icon-menu {
+    background: url('/img/images/icon-menu.png'); background-repeat: no-repeat;background-position: center; color: #fff; width: 40px;height: 40px;font-size: 14px; border: 0px solid; display: block; position: absolute; top: 40px; border-radius: 3px; right: 10px; line-height: 40px; opacity: 1;text-transform: uppercase; background-color: orange;z-index: 99;
+}
+ .header-bar{position:fixed;top:39px;width:100%;display:none;z-index:99;}
+ /* #icon-menu:focus + .header-bar{display:block;cursor: pointer;} */
+ .under-tag .main-tag{width:100%;height:auto;display:block;padding-left: 0px;}
+ .main-tag li::after{content:"";display:none;}
+ .main-tag .visit-tag{margin-top:0px;}
+ .text-section .main-text-section{width:100%;}
+ .inner-sec .left-text-img {display:none;}
+ .inner-sec .right-text-img {display:none;}
+ .inner-sec .center-text-lines{text-align:justify;padding-left:0px;margin-left:0px;margin-right:0px;}
+ .youtube-related .youtube-container{width:100%;height:auto;}
+ .footer .inner-footer{width:100%;height:auto;margin-left:auto;margin-right:auto;}
+ .infor-section {padding:0px;}
+ .infor-section .book-appointment{width:100%;}
+ .copyright em{font-size:16px;}
+ .gallery legend{font-size:29px;}
+ .gallery .inner-gallery{width:100%;}
+ /* /////////////////////// */
+ /* about */
+ .about-container .main-about{width:100%;height:auto;}
+ .image-banner img{width:100%;height:150px;}
+.heading-word p{margin-left:-10%;margin-top:-100px;}
+.about-content .wrap-inner-content{width:100%;display: block;}
+.about-reason .about-cards{width:100%;height:auto;display: block;}
+.wrap-inner-content .left-text-about{height:auto;}
+
+/* oerthodontic */
+
+.inner-main {width:100%;height:auto;margin:0px;padding:0px;}
+.inner-main .child-inner-main{width:100%;display:block;}
+.child-inner-main .right-list-container{width:100%;height:auto;margin:0px;padding:0px;}
+.left-below-image img { width: 100%; height: 150px;}
+.right-below-text legend {font-size: 10px;}
+.right-below-text p {font-size: 14px;}
+.bellow-child .left-below-image{margin:10px;height:auto;}
+.bellow-child .left-below-image img{height:100%;}
+.bellow-child .right-below-text{margin:10px;height:auto;}
+.child-inner-main .left-list-container{width:100%;height:auto;}
+
+/* service */
+
+.main-service {width:100%;height:auto;}
+.link-service{font-size: 10px;}
+.inner-service-img-list li img {height:auto;}
+.list-image-group-service .inner-service-img-list {
+    grid-template-columns: 33% 33% 33%; grid-template-rows: auto  auto;grid-column-gap: 5px; grid-row-gap: 0p
+}
+.inner-footer legend{
+   font-size:30px;
+}
+.child-main .image-banner{height:auto;}
+/* icustomer */
+
+.customer-controller .customer-main {width:100%;}
+.customer-content{width:100%;}
+.customer-content .customer-list {
+    width: 100%; height: auto; margin-left: auto; margin-right: auto;display: grid;grid-template-columns: 100%; grid-template-rows: 250px; padding: 0px;
+}
+.customer-list li{margin-bottom:30px;}
+.left-image-cus img {width: 100%; height: 100%;
+}
+/* discount */
+.main-content-discount legend{padding-left: 0px;font-size:10px;}
+.list-main-dis li .dis-text-right{height:auto;}
+.list-main-dis li .dis-image-left{height:auto;}
+.list-main-dis li .dis-text-right legend {font-size:15px;}
+
+
+/* contact */
+.dis-image-left img {height:100%;}
+.contact-controller .contact-container{width:100%;height:auto;}
+.contact-below-form form .form{display:block;}
+.form .form-group-left{width:100%;height:auto;}
+.form .form-group-right{width:100%;height:auto;}
+.form .form-group-right textarea{height:100%;}
+.contact-below-form form .button-contact{float:left;width:100%;height:auto;}
+.contact-below-form form .button-contact img{display:none;}
+
+/*discount-detail  */
+.right-list-container .discount-detail-legend{font-size:20px;}
+.main-discount-detail .above-discountdetail-img {width:100%;margin:0px;}
+
+/* service detail */
+.service-container .service-content{padding-left: 0px;}
+.item-img-ul li span{font-size:15px;}
+.item-img .item-img-ul{
+    width: 100%;height: auto; padding: 0px; margin: 0px;display: grid; grid-template-columns: 50% 50%; grid-template-rows: auto auto;column-gap: 2%;
+}.service-container{margin-left:0px;}
+/* news */
+.news-main .news-list{margin-left:0px;}
+li .right-text-news legend {font-size:15px;}
+
+.news-list li{height:auto;}
+.left-img-news img{height:200px;}
+.news-list li .left-img-news {height:auto;}
+/* responsive for mobiles and ipads  */
+}
+@media only screen and (max-width:850px) and (min-width:650px){
+   /*home*/
+   .row-home .header{width:100%;}
+   .main-bar li {margin-top:10px;}
+   .logo-img .under-logo .social-link{height:auto;}
+   .main-image-section .left-image-section img{width:100%;margin-left:0%;}
+   .main-image-section .right-image-section img{width:100%;margin-right:0%;}
+   .under-tag .main-tag{padding-left:0px;}
+   .gallery .inner-gallery{width:100%;}
+   .text-section .main-text-section {width:100%;}
+   .inner-main{width:100%;}
+
+
+   /* oerthodontic */
+   .left-below-image img{height:100%;}
+   .right-below-text legend{font-size:15px;font-weight:600;}
+   .right-below-text p {font-size: 15px; margin-top: auto;}
+   .image-banner img{width:100%;}
+   /* service */
+   .main-service{width:100%;}
+   .service-container{
+       margin-left:0px;
+      }
+      /* icustomer */
+   .customer-controller .customer-main{width:100%;}
+   .customer-content{width:100%;}
+   .right-text-cus p {font-size:15px;}
+   .customer-list li .left-image-cus{height:auto;}
+   .customer-list li .right-text-cus{height:auto;}
+   .customer-content .customer-list {
+    width: 100%;height: auto; margin-left: auto; margin-right: auto;display: grid;grid-template-columns: 50% 50%;grid-template-rows: auto auto auto;padding: 0px;row-gap:10px; }
+    /* service */
+    .list-main-dis li .dis-text-right{height:auto;}
+    .list-main-dis li .dis-image-left{height:auto;}
+    .main-discount-detail .above-discountdetail-img{width:100%;}
+
+    /* about */
+    .about-container .main-about{width:100%;height:auto;}
+    .right-picture-about img{height:100%;}
+    /* contact */
+    .contact-controller .contact-container{width:100%;}
+   .contact-below-form form .form{display:block;}
+   .form .form-group-left{width:100%;}
+   .form .form-group-right{width:100%;}
+   .form-group-left input{padding-left:35px;}
+  .contact-below-form form .button-contact{float:left;}
+}
+/* responsive for larder screen */
+@media only screen and (max-width:1050px) and (min-width:850px){
+    /* home */
+    .row-home .header{width:100%;}
+    .main-bar li {margin-top:10px;}
+    .logo-img .under-logo .social-link{height:auto;}
+    .main-image-section .left-image-section img{width:100%;margin-left:-20%;}
+    .main-image-section .right-image-section img{width:100%;margin-right:-20%;}
+    .under-tag .main-tag{padding-left:0px;}
+    .gallery .inner-gallery{width:100%;}
+    .text-section .main-text-section {width:100%;}
+    .inner-main{width:100%;}
+    /* service */
+    .main-service{width:100%;}
+    .service-container{margin-left:0px;}
+    /* customer */
+    .customer-content{width:100%;}
+    .customer-controller .customer-main{width:100%;}
+
+    /* about */
+    .about-container .main-about{width:100%;height:auto;}
+    /* contact */
+    .contact-controller .contact-container{width:100%;}
+    .contact-below-form form .form{margin-left:10px;}
+}
+@media only screen and (max-width:1195px) and (min-width:1024px){
+
+}

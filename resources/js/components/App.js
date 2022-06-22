@@ -1,12 +1,15 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import  RouteClass from '../routes';
+import {Navigate} from 'react-router-dom';
+import Cookies from 'js-cookie';
+const username = Cookies.get('username');
 class App extends Component {
     constructor(props){
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        username:username,
       }
     }
     //function react js
@@ -19,10 +22,8 @@ class App extends Component {
     }
     render(){
         return (
-        <div  className="container">
-            <div  className="row justify-content-center">
-            </div>
-            <RouteClass />
+        <div  className="container-app">
+        <RouteClass />
         </div>
       );
     }

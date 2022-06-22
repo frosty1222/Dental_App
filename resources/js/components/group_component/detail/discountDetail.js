@@ -23,15 +23,15 @@ class ServiceDetail extends Component {
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                        {/* code content */}
                        <div className="child-main">
-                        <Banner bannerWord="Chỉnh nha chuyên khoa chi tiết" />
+                        <Banner bannerWord="Giảm giá chi tiết" />
                        <div className="inner-main">
-                           <legend className="hint-word">Home { largerSign } Chỉnh nha chuyên khoa chi tiết</legend>
+                           <legend className="hint-word">Home { largerSign } giảm giá chi tiết</legend>
                                <div className="child-inner-main">
                                   <Leftbar />
                                   <div className="clearfix"></div>

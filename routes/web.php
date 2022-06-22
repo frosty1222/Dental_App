@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
+// Route::view('/{path?}', 'app');
+// Route::get('{all?}', [App\Http\Controllers\HomeController::class,'_invoke'])->where('path', '[a-zA-Z0-9-/]+');
 Route::get('/{path?}/{id?}', function () {
     return view('welcome');
-});
-Auth::routes();
+})->where('path', '^((?!api).)*$');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');
+// Route::get('/{path?}/{id?}', function () {
+//     return view('admin');
+// })->where('path', '^((?!api).)*$');

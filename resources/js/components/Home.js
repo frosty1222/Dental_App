@@ -2,63 +2,85 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
 import Aidsection from './aidsection';
+import { Outlet } from "react-router-dom";
+import axios from 'axios';
 // import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
-class Home extends Component {
+class Home extends Component{
     constructor(props){
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        countTime:0,
+        gallery:[],
       }
+      this.showBar= this.showBar.bind(this);
     }
+    getImages = () => {
+        axios.get("http://127.0.0.1:8000/api/images")
+          .then((response) => {
+            if (response.status === 200) {
+              this.setState({
+                gallery: response.data.data,
+              });
+
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+      showBar= ()=>{
+        $('#header-bar').show()
+      }
     //function react js
-    mouseover1(){
-        $('#identical-class-li-bar1').on('mouseenter',function(){
-            $('#list-group1').show('slow');
-        })
-        $('#list-group1').on('mouseleave',function(){
-            $(this).hide('fast');
-        })
-    }
-    mouseover2(){
-        $('#identical-class-li-bar2').on('mouseenter',function(){
-            $('#list-group2').show('slow');
-        })
-        $('#list-group2').on('mouseleave',function(){
-            $(this).hide('fast');
-        })
-    }
-    mouseover3(){
-        $('#identical-class-li-bar3').on('mouseenter',function(){
-            $('#list-group3').show('slow');
-        })
-        $('#list-group3').on('mouseleave',function(){
-            $(this).hide('fast');
-        })
-    }
-    mouseover4(){
-        $('#identical-class-li-bar4').on('mouseenter',function(){
-            $('#list-group4').show('slow');
-        })
-        $('#list-group4').on('mouseleave',function(){
-            $(this).hide('fast');
-        })
-    }
-    forClose(){
-        $('header-bar').on('mouseleave',function(){
-            $('#list-group1').hide();
-            $('#list-group2').hide();
-            $('#list-group3').hide();
-            $('#list-group4').hide();
-        })
-    }
+    // mouseover1(){
+    //     $('#identical-class-li-bar1').on('mouseenter',function(){
+    //         $('#list-group1').show('slow');
+    //     })
+    //     $('#list-group1').on('mouseleave',function(){
+    //         $(this).hide('fast');
+    //     })
+    // }
+    // mouseover2(){
+    //     $('#identical-class-li-bar2').on('mouseenter',function(){
+    //         $('#list-group2').show('slow');
+    //     })
+    //     $('#list-group2').on('mouseleave',function(){
+    //         $(this).hide('fast');
+    //     })
+    // }
+    // mouseover3(){
+    //     $('#identical-class-li-bar3').on('mouseenter',function(){
+    //         $('#list-group3').show('slow');
+    //     })
+    //     $('#list-group3').on('mouseleave',function(){
+    //         $(this).hide('fast');
+    //     })
+    // }
+    // mouseover4(){
+    //     $('#identical-class-li-bar4').on('mouseenter',function(){
+    //         $('#list-group4').show('slow');
+    //     })
+    //     $('#list-group4').on('mouseleave',function(){
+    //         $(this).hide('fast');
+    //     })
+    // }
+    // forClose(){
+    //     $('#header-bar').on('mouseleave',function(){
+    //         $('#list-group1').hide();
+    //         $('#list-group2').hide();
+    //         $('#list-group3').hide();
+    //         $('#list-group4').hide();
+    //     })
+    // }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.mouseover1();
-        this.mouseover2();
-        this.mouseover3();
-        this.mouseover4();
-        this.forClose();
+        // this.mouseover1();
+        // this.mouseover2();
+        // this.mouseover3();
+        // this.mouseover4();
+        // this.forClose();
+        this.getImages();
     }
     render(){
         return (
@@ -80,9 +102,11 @@ class Home extends Component {
                           </div>
                       </div>
                       <div className="clearfix"></div>
+                      {/* <div id="icon-menu" tabIndex="1"></div> */}
+                      <div id="icon-menu" onClick={()=>this.showBar()}></div>
                       <div className="header-bar" id="header-bar">
                           <ul className="main-bar" id="main-bar">
-                               <li className="home-fa"><i className="fa fa-home"><Link className="link" to="/">Home</Link></i></li>
+                               <li className="identical-class-li-bar"><i className="fa fa-home"><Link className="link" to="/">Home</Link></i></li>
                                <li className="identical-class-li-bar"  id="identical-class-li-bar1">
                                 <Link className="link" to="/eorthodontic">Chỉnh Nha chuyên gia</Link>
                                    <ul className="list-group" id="list-group1">
@@ -224,24 +248,34 @@ class Home extends Component {
                         thư viện nụ cười tại <br/>
                          <span>nha khoa rose</span>
                     </legend>
+
                     <div className="inner-gallery">
-                         <ul className="first-image-collumes">
-                                <li><img src="/img/images/Nha-khoa_03.jpg" /></li>
-                                <li><img src="/img/images/Nha-khoa_16.jpg" /></li>
-                                <li><img src="/img/images/Nha-khoa_26.jpg" /></li>
-                         </ul>
-                         <ul className="second-image-collumes">
-                                 <li><img src="/img/images/Nha-khoa_06.jpg" /></li>
-                                 <li><img src="/img/images/Nha-khoa_13.jpg" /></li>
-                                 <li><img src="/img/images/Nha-khoa_23.jpg" /></li>
+
+                        <ul className="first-image-collumes">
+                             {
+                            this.state.gallery.length >0 ? (
+                                this.state.gallery.map((g)=>(
+                        <li><img src={"uploads/"+g.image} /></li>
+                        ))
+                        ):(
+                            <span className="btn btn-danger">empty</span>
+                        )
+                    }
+                        </ul>
+                         {/* <ul className="first-image-collumes">
+                         <li><img src={"uploads/"+g.image} /></li>
+                         </ul> */}
+                         {/* <ul className="second-image-collumes">
+                         <li><img src={"uploads/"+g.image} /></li>
                          </ul>
                          <ul className="third-image-collumes">
-                                <li><img src="/img/images/Nha-khoa_09.jpg" /></li>
-                                <li><img src="/img/images/Nha-khoa_19.jpg" /></li>
-                         </ul>
+                         <li><img src={"uploads/"+g.image} /></li>
+                         </ul> */}
                     </div>
+
                 </div>
             </div>
+            <Outlet />
         </div>
       );
     }

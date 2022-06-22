@@ -11,20 +11,65 @@ class ServiceDetail extends Component {
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        name:'',
+        image:'',
+        description:'',
+        type:'',
+        advantage_text:'',
+        service:[],
+        newService:[],
+        service2:[],
       }
     }
     //function react js
-    ExampleFunction(){
+    onGetValue = () => {
+        const url = window.location.pathname
+        const strs = url.split('/');
+        const id = strs.at(-1);
+        // console.log(id);
+        axios.get('http://127.0.0.1:8000/api/getIdReactServiceEdit/'+id).then((response)=>{
+            this.setState({
+                service:response.data.data,
+            })
+            this.state.service.map((sv)=>{
+                this.state.newService.push(sv);
+            })
+            this.state.newService.map((newsv)=>{
+                this.setState({
+                 name : newsv.name,
+                 image : newsv.image,
+                 description :newsv.description,
+                 type: newsv.type,
+                 advantage_text : newsv.advantage_text,
+                })
+            })
+        }).catch(err=>{
+            alert(err);
+        })
     }
+    onGetValue2 =() => {
+        axios.get("http://127.0.0.1:8000/api/getAll2")
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+             service2: response.data.data,
+            });
+          //   console.log(this.state.category);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.onGetValue();
+        this. onGetValue2();
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                         {/* code content */}
@@ -41,38 +86,22 @@ class ServiceDetail extends Component {
                                               <ul className="service-content">
                                                    <li className="service-item1">
                                                        <div className="service-heading">
-                                                            <legend>implant</legend>
+                                                            <legend>{this.state.name}</legend>
                                                        </div>
                                                        <div className="service-text">
                                                             <p>
-                                                             Cấy ghép Implant là phương pháp trồng răng giả cố định ưu viết nhất hiện nay, một trụ implant titanium được cấy ghép trực tiếp vào xương hàm và tích hợp hoàn toàn vào xương hàm có chức năng như chân răng thật, sau đó cố định mão sứ lên trên trụ implant.
-                                                             Kết quả: răng được khôi phục hoàn toàn.
-                                                             <br/>
-                                                             <br/>
-                                                             Ưu điểm vượt trội của răng Implant: tuổi thọ trọn đời, sức nhai khỏe, không mài các răng kế cận, thẩm mỹ cao, ngắn tiêu xương hàm, hóp má và tựu nướu.
+                                                            {this.state.description }
                                                             </p>
                                                        </div>
                                                        <div className="service-img">
-                                                             <img src="/img/images/Nha-khoa_03b.jpg" />
+                                                             <img src={"/uploads/"+this.state.image} />
                                                        </div>
                                                        <div className="item2-heading">
                                                            <legend>ưu điểm</legend>
                                                        </div>
                                                        <div className="item2-text">
-                                                           <p>
-                                                            Sử dụng trọn đời
-                                                            <br/>
-                                                            Thoải mái về lâu dài khi implant hoàn toàn ổn định
-                                                            <br/>
-                                                            Ngăn ngừa sự tiêu xương do mất răng
-                                                            <br/>
-                                                            Kỹ thuật bảo tồn nhất, không phải mài răng, lấy tủy
-                                                            <br/>
-                                                            Tránh những khuyết điểm mà hàm giả tháo lắp gặp phải (lỏng léo, vướng víu)
-                                                            <br/>
-                                                            Chức năng ăn nhai tốt như răng thật
-                                                            <br/>
-                                                            Gần giống như răng thật về thẩm mỹ lẩn chức năng
+                                                           <p style={{textAlign:'justify'}}>
+                                                              {this.state.advantage_text}<br/>
                                                            </p>
                                                        </div>
                                                    </li>
@@ -81,7 +110,22 @@ class ServiceDetail extends Component {
                                                             <legend>các dịch vụ khác</legend>
                                                         </div>
                                                         <div className="item-img">
-                                                             <ul className="item-img-ul">
+
+                                                            <ul className="item-img-ul">
+                                                                 {
+                                                                this.state.service2.length > 0 ?(
+                                                                    this.state.service2.map((sv2)=>(
+                                                                 <li>
+                                                                    <img  src={"/uploads/"+sv2.image}/>
+                                                                    <br></br>
+                                                                    <span><Link to={"/servicedetail/"+sv2.id}>{sv2.name}</Link></span>
+                                                                 </li>
+                                                               ))
+                                                               ):(<span className="text-success">empty</span>)
+                                                             }
+                                                             </ul>
+
+                                                             {/* <ul className="item-img-ul">
                                                                  <li>
                                                                     <img  src="/img/images/Nha-khoa_06a.jpg"/>
                                                                     <br></br>
@@ -102,7 +146,7 @@ class ServiceDetail extends Component {
                                                                     <br></br>
                                                                     <span>implant</span>
                                                                  </li>
-                                                             </ul>
+                                                             </ul> */}
                                                         </div>
                                                    </li>
                                               </ul>

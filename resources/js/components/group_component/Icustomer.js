@@ -10,20 +10,27 @@ class Icustomer extends Component {
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        customer:[],
       }
     }
     //function react js
-    ExampleFunction(){
-    }
-    // this method will call to those functions has defined inside this method when it reload page
+    onValue =() =>{
+        axios.get('http://127.0.0.1:8000/api/cGetAll')
+        .then(res=>{
+           this.setState({customer:res.data.data});
+          })
+          .catch(err=>{
+           console.log(err);
+          })
+      }
+      // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.onValue();
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                        <div className="child-main"></div> {/* code content */}
@@ -38,15 +45,36 @@ class Icustomer extends Component {
                                <div className="customer-content">
                                        <legend>Hỏi đáp</legend>
                                       <ul className="customer-list">
-                                           <li>
-                                              <div className="left-image-cus">
+                                        {
+                                            this.state.customer.length >0 ?(
+                                                this.state.customer.map((cus)=>(
+                                                    <li key={cus.id}>
+                                                    <div className="left-image-cus">
+                                                        <img src={"uploads/"+cus.image} />
+                                                    </div>
+                                                    <div className="right-text-cus">
+                                                       <p>
+                                                          <Link to={"/customer_detail/"+cus.id}>
+                                                              {cus.name}
+                                                          </Link>
+                                                       </p>
+                                                    </div>
+                                                 </li>
+                                                ))
+                                            ):(<span className="text-danger">empty</span>)
+                                        }
+
+                                           {/* <li>
+                                            <div className="left-image-cus">
                                                   <img src="/img/images/Nha-khoa_11a.jpg" />
                                               </div>
                                               <div className="right-text-cus">
                                                  <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                   <Link to="/customer_detail/1">
+                                                        Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
+                                                        <br/>
+                                                        để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                    </Link>
                                                  </p>
                                               </div>
                                            </li>
@@ -56,9 +84,11 @@ class Icustomer extends Component {
                                               </div>
                                               <div className="right-text-cus">
                                                  <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                   <Link to="/customer_detail/1">
+                                                        Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
+                                                        <br/>
+                                                        để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                    </Link>
                                                  </p>
                                               </div>
                                            </li>
@@ -68,9 +98,11 @@ class Icustomer extends Component {
                                               </div>
                                               <div className="right-text-cus">
                                                  <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                   <Link to="/customer_detail/1">
+                                                        Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
+                                                        <br/>
+                                                        để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                    </Link>
                                                  </p>
                                               </div>
                                            </li>
@@ -80,9 +112,11 @@ class Icustomer extends Component {
                                               </div>
                                               <div className="right-text-cus">
                                                  <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                   <Link to="/customer_detail/1">
+                                                        Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
+                                                        <br/>
+                                                        để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                    </Link>
                                                  </p>
                                               </div>
                                            </li>
@@ -92,24 +126,14 @@ class Icustomer extends Component {
                                               </div>
                                               <div className="right-text-cus">
                                                  <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                   <Link to="/customer_detail/1">
+                                                        Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
+                                                        <br/>
+                                                        để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
+                                                    </Link>
                                                  </p>
                                               </div>
-                                           </li>
-                                           <li>
-                                            <div className="left-image-cus">
-                                                  <img src="/img/images/Nha-khoa_11a.jpg" />
-                                              </div>
-                                              <div className="right-text-cus">
-                                                 <p>
-                                                    Máy lấy cao răng thương hiệu nhật bản đưuọc nhiều người tin dùng
-                                                    <br/>
-                                                    để có được một hàm răng thật trắng sáng,chắc khỏe với nụ cười tỏa sáng
-                                                 </p>
-                                              </div>
-                                           </li>
+                                           </li> */}
                                       </ul>
                                </div>
                              </div>

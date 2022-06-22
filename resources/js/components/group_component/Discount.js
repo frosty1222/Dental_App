@@ -11,20 +11,30 @@ class Discount extends Component {
        super(props);
        //defining variable and array or objects to return to react js view
       this.state = {
-        list:[],
+        discount:[],
       }
     }
     //function react js
-    ExampleFunction(){
-    }
+    getDiscount = () => {
+        axios.get("http://127.0.0.1:8000/api/GetAllDiscountData")
+          .then((response) => {
+              this.setState({
+                discount: response.data.data,
+              });
+
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.getDiscount();
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                        {/* code content */}
@@ -41,20 +51,30 @@ class Discount extends Component {
                                              <legend>Cập nhật các Ưu đãi và Bảng giá khuyến mãi mới nhất từ nha khoa Rose</legend>
                                          </div>
                                        <div className="list-content-discount">
+
                                             <ul className="list-main-dis">
-                                                <li>
-                                                   <div className="dis-image-left">
-                                                       <img src="/img/images/discount1.jpg"/>
-                                                   </div>
-                                                   <div className="dis-text-right">
-                                                        <legend><Link className="linksub" to="/discountdetail/1">khuyến mãi tẩy trắng răng</Link></legend>
-                                                        <p>
-                                                            Với phương châm hoạt động phát triển kinh tế tư nhân và định hướng mạnh mẽ và chuyên nghiệp...
-                                                        </p>
-                                                   </div>
-                                                </li>
-                                                <hr />
-                                                <li>
+                                                 {
+                                                this.state.discount.length > 0 ?(
+                                                    this.state.discount.map((dis)=>(
+                                                        <>
+                                                        <li key={dis.id}>
+                                                        <div className="dis-image-left">
+                                                            <img src={"/uploads/"+dis.image} />
+                                                        </div>
+                                                        <div className="dis-text-right">
+                                                             <legend><Link className="linksub" to={"/discountdetail/"+dis.id}>{dis.name}</Link></legend>
+                                                             <p>
+                                                                 {dis.description}
+                                                             </p>
+                                                        </div>
+                                                     </li>
+                                                      <hr /> </>
+                                                    ))
+                                                ):(<span className="btn btn-primary">empty</span>)
+                                               }
+
+
+                                                {/* <li>
                                                     <div className="dis-image-left">
                                                        <img src="/img/images/discount2.jpg"/>
                                                     </div>
@@ -64,7 +84,7 @@ class Discount extends Component {
                                                             Với phương châm hoạt động phát triển kinh tế tư nhân và định hướng mạnh mẽ và chuyên nghiệp...
                                                         </p>
                                                     </div>
-                                                </li>
+                                                </li> */}
                                             </ul>
                                        </div>
                                   </div>

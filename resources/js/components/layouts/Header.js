@@ -2,53 +2,63 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link } from 'react-router-dom'
 class Header extends Component {
-    mouseover1(){
-        $('#identical-class-li-bar1').on('mouseenter',function(){
-            $('#list-group1').show('slow');
-        })
-        $('#list-group1').on('mouseleave',function(){
-            $(this).hide('slow');
-        })
+    constructor(props){
+        super(props);
+        this.state ={
+
+        }
+        this.showBar = this.showBar.bind(this);
     }
-    mouseover2(){
-        $('#identical-class-li-bar2').on('mouseenter',function(){
-            $('#list-group2').show('slow');
-        })
-        $('#list-group2').on('mouseleave',function(){
-            $(this).hide('slow');
-        })
-    }
-    mouseover3(){
-        $('#identical-class-li-bar3').on('mouseenter',function(){
-            $('#list-group3').show('slow');
-        })
-        $('#list-group3').on('mouseleave',function(){
-            $(this).hide('slow');
-        })
-    }
-    mouseover4(){
-        $('#identical-class-li-bar4').on('mouseenter',function(){
-            $('#list-group4').show('slow');
-        })
-        $('#list-group4').on('mouseleave',function(){
-            $(this).hide('slow');
-        })
-    }
-    forClose(){
-        $('header-bar').on('mouseleave',function(){
-            $('#list-group1').hide();
-            $('#list-group2').hide();
-            $('#list-group3').hide();
-            $('#list-group4').hide();
-        })
-    }
+    // mouseover1(){
+    //     $('#identical-class-li-bar1').on('mouseenter',function(){
+    //         $('#list-group1').show('slow');
+    //     })
+    //     $('#list-group1').on('mouseleave',function(){
+    //         $(this).hide('slow');
+    //     })
+    // }
+    // mouseover2(){
+    //     $('#identical-class-li-bar2').on('mouseenter',function(){
+    //         $('#list-group2').show('slow');
+    //     })
+    //     $('#list-group2').on('mouseleave',function(){
+    //         $(this).hide('slow');
+    //     })
+    // }
+    // mouseover3(){
+    //     $('#identical-class-li-bar3').on('mouseenter',function(){
+    //         $('#list-group3').show('slow');
+    //     })
+    //     $('#list-group3').on('mouseleave',function(){
+    //         $(this).hide('slow');
+    //     })
+    // }
+    // mouseover4(){
+    //     $('#identical-class-li-bar4').on('mouseenter',function(){
+    //         $('#list-group4').show('slow');
+    //     })
+    //     $('#list-group4').on('mouseleave',function(){
+    //         $(this).hide('slow');
+    //     })
+    // }
+    // forClose(){
+    //     $('header-bar').on('mouseleave',function(){
+    //         $('#list-group1').hide();
+    //         $('#list-group2').hide();
+    //         $('#list-group3').hide();
+    //         $('#list-group4').hide();
+    //     })
+    // }
+    showBar= ()=>{
+        $('#header-bar').show()
+      }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.mouseover1();
-        this.mouseover2();
-        this.mouseover3();
-        this.mouseover4();
-        this.forClose();
+        // this.mouseover1();
+        // this.mouseover2();
+        // this.mouseover3();
+        // this.mouseover4();
+        // this.forClose();
     }
     render(){
         return (
@@ -70,9 +80,10 @@ class Header extends Component {
                           </div>
                       </div>
                       <div className="clearfix"></div>
+                      <div id="icon-menu" onClick={()=>this.showBar()}></div>
                       <div className="header-bar" id="header-bar">
                           <ul className="main-bar" id="main-bar">
-                               <li className="home-fa"><i className="fa fa-home"><Link className="link" to="/">Home</Link></i></li>
+                               <li className="identical-class-li-bar"><i className="fa fa-home"><Link className="link" to="/">Home</Link></i></li>
                                <li className="identical-class-li-bar"  id="identical-class-li-bar1">
                                 <Link className="link" to="/eorthodontic">Chỉnh Nha chuyên gia</Link>
                                    <ul className="list-group" id="list-group1">

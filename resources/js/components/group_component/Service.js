@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import Banner from '../suppliment/Banner';
+import axios from 'axios';
 const  largerSign='>';
 const  bannerWord ='service';
 class Service extends Component {
@@ -12,19 +13,32 @@ class Service extends Component {
        //defining variable and array or objects to return to react js view
       this.state = {
         list:[],
+        service:[],
       }
     }
     //function react js
-    ExampleFunction(){
-    }
+    onGetValue=() => {
+        axios.get("http://127.0.0.1:8000/api/getAll")
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+             service: response.data.data,
+            });
+          //   console.log(this.state.category);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
     // this method will call to those functions has defined inside this method when it reload page
     componentDidMount(){
-        this.ExampleFunction();
+        this.onGetValue();
     }
     render(){
         return (
-            <div className="container">
-            <div className="row justify-content-center">
+            <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                        {/* code content */}
@@ -36,11 +50,18 @@ class Service extends Component {
                                       <div className="hint-service-word"><legend>Home {largerSign} dịch vụ nha khoa</legend></div>
                                        <div className="list-image-group-service">
                                              <ul className="inner-service-img-list">
-                                                   <li>
-                                                      <img src="/img/images/nieng_rang.jpg" />
-                                                      <span><Link className="link-service"  to="/servicedetail/1">Chỉnh hình</Link></span>
-                                                   </li>
-                                                   <li>
+                                                {
+                                                    this.state.service.length>0?(
+                                                        this.state.service.map((sv)=>(
+                                                            <li key={sv.id}>
+                                                                <img src={"uploads/"+sv.image} />
+                                                                <span><Link className="link-service"  to={"/servicedetail/"+sv.id}>Chỉnh hình</Link></span>
+                                                            </li>
+                                                        ))
+                                                    ):(<span>empty</span>)
+                                                }
+
+                                                   {/* <li>
                                                       <img  src="/img/images/Nha-khoa_06a.jpg" />
                                                       <span><Link className="link-service"  to="/servicedetail/1">Chỉnh nha</Link></span>
                                                    </li>
@@ -59,7 +80,7 @@ class Service extends Component {
                                                    <li>
                                                       <img  src="/img/images/Nha-khoa_29b.jpg" />
                                                       <span><Link className="link-service" to="/servicedetail/1">Tráng răng</Link></span>
-                                                   </li>
+                                                   </li> */}
                                              </ul>
                                        </div>
                                  </div>

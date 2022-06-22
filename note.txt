@@ -7,3 +7,5 @@
                       <br></br>
                       <Link to="/header">header</Link> */}
                   </ul>
+the app is created at 10/06/2022 by Lo Van Dong
+php artisan make:model Todo -mcr// make model,controller, table at the same time

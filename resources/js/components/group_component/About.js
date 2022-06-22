@@ -23,8 +23,8 @@ class About extends Component {
     }
     render(){
         return (
-        <div className="container">
-            <div className="row justify-content-center">
+        <div className="container-app">
+            <div className="row-app">
                 <div className="child-container">
                     <Header />
                         {/* code content */}
@@ -125,6 +125,7 @@ class About extends Component {
                                </div>
                           </div>
                         {/*end code */}
+                        <div className="clearfix"></div>
                     <Footer/>
                 </div>
             </div>

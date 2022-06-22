@@ -1,0 +1,13 @@
+.container-admin{width:100%;height:1000px;margin:0px;padding-top:20px;background:url('/img/images/sea-wave.jpg');background-repeat:no-repeat;background-size:cover;}
+.container-admin .row-admin{
+    margin-left:-15px;margin-right:-15px;
+}
+.btn-default{height:35px;}
+.navbar-nav>li{margin-top:10px;}
+.navbar>.container-fluid .navbar-brand{margin-top:10px;}
+.main-admin{width:1200px;margin-left: auto;margin-right:auto;padding:0px;}
+/* background:url('/img/images/sea-wave.jpg');background-repeat:no-repeat;background-size:cover; */
+thead tr th{color:#fff;}
+tbody tr td{color:#fff;}
+form .text-light{color:white;}
+label{color:#fff;}
